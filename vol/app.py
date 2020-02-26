@@ -11,7 +11,17 @@ def index():
     data =s.collectData()
 
     #cronサンプル
-    html = render_template('index.html',a=data,b="aa")
+    f = open('sample.text')
+    x =f.read()
+    f.close()
+    x = x + "a"
+    f = open('sample.text','w')
+    f.writelines(x)
+    f.close()
+    f = open('sample.text')
+    text =f.read()
+    f.close()
+    html = render_template('index.html',a=data,b=text)
     return html
 
 
