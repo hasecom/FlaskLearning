@@ -1,6 +1,7 @@
 from flask import Flask
 from flask.templating import render_template
 import scraping as scrap
+import cron
 import os
 import json
 app = Flask(__name__)
@@ -11,16 +12,8 @@ def index():
     data =s.collectData()
 
     #cronサンプル
-    f = open('sample.text')
-    x =f.read()
-    f.close()
-    x = x + "a"
-    f = open('sample.text','w')
-    f.writelines(x)
-    f.close()
-    f = open('sample.text')
-    text =f.read()
-    f.close()
+    c = cron.cron()
+    text = c.limp()
     html = render_template('index.html',a=data,b=text)
     return html
 
